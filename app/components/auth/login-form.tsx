@@ -63,7 +63,7 @@ const LoginFrom = () => {
             <FormField
               control={form.control}
               name='email'
-              render={({ field }) => (
+              render={({field}) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
