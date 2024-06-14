@@ -24,8 +24,14 @@ import { FormError } from '../form-error'
 import { FormSuccess } from '../form-success'
 
 import { login } from '@/actions/login'
+import { useSearchParams } from 'next/navigation'
 
 const LoginFrom = () => {
+  const searchParams = useSearchParams();
+  const urlError = searchParams.get("error") === 'OAuthAccountNotLinked'
+    ? 'Email alreay in use whith different profider' : ''
+
+
   const [error, setError] = useState<string | undefined>('')
   const [success, setSuccess] = useState<string | undefined>('')
   const [isPending, startTransition] = useTransition()
@@ -63,7 +69,7 @@ const LoginFrom = () => {
             <FormField
               control={form.control}
               name='email'
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
@@ -89,6 +95,7 @@ const LoginFrom = () => {
                       {...field}
                       disabled={isPending}
                       placeholder='******'
+                      type='password'
                     />
                   </FormControl>
                   <FormMessage />
@@ -96,7 +103,7 @@ const LoginFrom = () => {
               )}
             />
           </div>
-          <FormError message={error} />
+          <FormError message={error || urlError} />
           <FormSuccess message={success} />
           <Button type='submit' disabled={isPending} className='w-full'>
             Login
