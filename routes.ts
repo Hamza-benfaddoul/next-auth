@@ -13,9 +13,9 @@ export const publicRoutes: string[] = ['/', '/auth/new-verification']
 export const authRoutes: string[] = [
   '/auth/login',
   '/auth/register',
-  '/auth/forgot-password',
-  '/auth/reset-password',
+  '/auth/reset',
   '/auth/error',
+  '/auth/new-password'
 ]
 
 /**

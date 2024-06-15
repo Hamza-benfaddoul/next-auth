@@ -2,6 +2,7 @@ import { auth, signOut } from '@/auth'
 import { Button } from '@/components/ui/button'
 
 const SettingsPage = async () => {
+  const router = useRouter();
   const session = await auth()
   return (
     <div>
@@ -10,6 +11,7 @@ const SettingsPage = async () => {
         action={async () => {
           'use server'
           await signOut()
+          router.push('/')
         }}
       >
         <Button type='submit'>Sign Out</Button>
