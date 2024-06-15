@@ -6,10 +6,10 @@ export const sendVerificationEmail = async (
   email: string,
   token: string
 ) => {
-  const confirmLink = `${process.env.NEXTAUTH_URL}/new-verification?token=${token}`;
+  const confirmLink = `${process.env.NEXTAUTH_URL}/auth/new-verification?token=${token}`;
 
   await resend.emails.send({
-    from: 'soluview@resend.dev',
+    from: 'onboarding@resend.dev',
     to: email,
     subject: 'Confirm your email',
     html: `<p>Click <a href="${confirmLink}">here</a> to confirm email`
